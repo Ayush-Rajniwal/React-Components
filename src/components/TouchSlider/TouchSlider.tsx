@@ -1,17 +1,14 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import "./TouchSlider.scss";
 
 function TouchSlider() {
 	const [value, setValue] = useState(0);
-	const val = useMotionValue(value);
-	const color = useTransform(val, [-1, 1], ["#fff", "#000"]);
 
 	const dragEndHandler = (e: Event, info: any) => {
-		console.log(e, info);
-		if (info.offset.x > 400) {
+		if (info.offset.x > 10) {
 			setValue((val) => val + 1);
-		} else if (info.offset.x < -400) {
+		} else if (info.offset.x < -10) {
 			setValue((val) => val - 1);
 		}
 	};
